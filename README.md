@@ -1,133 +1,178 @@
-# 📊 A/B Testing Project: Packaging Optimization in Pharma Mobile App
+# A/B Testing: Packaging Optimization in Pharma Mobile App
 
-## 🚀 Business Objective
+> Does changing pill packaging color and copy move the needle on conversions? This project runs a rigorous statistical experiment to find out — and delivers a ship/no-ship recommendation backed by data.
 
-To evaluate whether changing product packaging from **Red (Control)** to **Blue (Treatment)** improves user conversion and drives higher revenue in a mobile pharmacy application.
-
----
-
-## 🧪 Experiment Design
-
-* **Control (A):** Red packaging ("Relieves Pain")
-* **Treatment (B):** Blue packaging ("Quickly Reduces Inflammation")
-* **Sample Size:** 1000 users
-* **Split:** A = 511, B = 489 (~50/50)
-* **Primary Metric:** Conversion Rate
-* **Statistical Test:** Two-proportion Z-test (α = 0.05)
+[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://python.org)
+[![Scipy](https://img.shields.io/badge/Stats-Z--test-8A2BE2)](https://scipy.org)
+[![Notebook](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter)](ab_testing.ipynb)
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
 
 ---
 
-## 📊 Key Results
+## Table of Contents
 
-### 🔹 Conversion Lift
-
-* **Control (A):** 16.05%
-* **Treatment (B):** 25.36%
-
-👉 **+9.3 percentage point increase (~58% relative lift)**
-
----
-
-### 🔹 Statistical Significance
-
-* **p-value = 0.00027**
-
-👉 Result is highly significant (p < 0.05)
-👉 Strong evidence that uplift is NOT due to randomness
+- [Problem Statement](#problem-statement)
+- [Experiment Design](#experiment-design)
+- [Key Results](#key-results)
+- [Funnel Performance](#funnel-performance)
+- [Segmentation Insights](#segmentation-insights)
+- [Final Recommendation](#final-recommendation)
+- [Tech Stack](#tech-stack)
+- [Project Files](#project-files)
+- [Run It Yourself](#run-it-yourself)
+- [Future Work](#future-work)
 
 ---
 
-### 🔹 Confidence Interval
+## Problem Statement
 
-* **A:** 13% – 19%
-* **B:** 21% – 29%
+A mobile pharmacy app wants to know whether switching product packaging from **Red** ("Relieves Pain") to **Blue** ("Quickly Reduces Inflammation") increases purchase conversion. The hypothesis: benefit-focused copy on a calmer color drives more add-to-cart and checkout actions.
 
-👉 No overlap → Treatment effect is robust and reliable
-
----
-
-## 📈 Funnel Performance
-
-| Stage       | A     | B     | Impact |
-| ----------- | ----- | ----- | ------ |
-| Scroll      | 36.2% | 38.2% | +2%    |
-| Add to Cart | 39.3% | 46.2% | +7%    |
-| Conversion  | 16.0% | 25.3% | +9%    |
-
-👉 Major improvement observed in **add-to-cart stage**, driving overall conversion uplift
+This project designs, runs, and interprets the full A/B test — from sample sizing to segment-level breakdown — and delivers a clear go/no-go decision.
 
 ---
 
-## 👥 Segmentation Insights
+## Experiment Design
 
-### 🔹 Age Group
-
-* **25–34:** 15.3% → 33.0% (**+17.7 pp**)
-* **55+:** 17.4% → 31.3% (**+13.9 pp**)
-* **45–54:** No significant change
-
-👉 Strongest impact among **young and older users**
-
----
-
-### 🔹 Device Type
-
-* **Android:** 13.7% → 24.5% (**+10.8 pp**)
-* **iOS:** 18.5% → 26.2% (**+7.7 pp**)
-
-👉 Higher uplift observed on **Android users**
+| Parameter | Detail |
+|---|---|
+| Control (A) | Red packaging — "Relieves Pain" |
+| Treatment (B) | Blue packaging — "Quickly Reduces Inflammation" |
+| Sample size | 1,000 users |
+| Split | A = 511 users, B = 489 users (~50/50) |
+| Primary metric | Conversion rate |
+| Statistical test | Two-proportion Z-test |
+| Significance level | α = 0.05 |
 
 ---
 
-### 🔹 User Type
+## Key Results
 
-* **New Users:** 17.6% → 25.4% (**+7.8 pp**)
-* **Returning Users:** 15.0% → 25.3% (**+10.3 pp**)
+### Conversion lift
 
-👉 Treatment is effective across all users, with stronger gains in **returning users**
+| Group | Conversion rate | 95% CI |
+|---|---|---|
+| Control (A) — Red | 16.05% | 13% – 19% |
+| Treatment (B) — Blue | 25.36% | 21% – 29% |
+| **Lift** | **+9.3 pp (~58% relative)** | No overlap |
 
----
+### Statistical significance
 
-## 🎯 Final Recommendation
-
-✔ Treatment (Blue packaging) delivers **statistically significant and practically meaningful improvement**
-✔ Consistent uplift across funnel stages and user segments
-✔ No negative signals observed
-
-👉 **Decision: Ship Treatment (Version B)**
-
----
-
-## 💼 Business Impact
-
-* ~58% relative increase in conversion rate
-* Improved engagement across user journey
-* Scalable impact across demographics and devices
+- p-value = **0.00027** (well below α = 0.05)
+- Confidence intervals do not overlap → treatment effect is robust
+- Strong evidence the uplift is **not due to randomness**
 
 ---
 
-## 🛠️ Tools & Techniques
+## Funnel Performance
 
-* Python (Pandas, NumPy)
-* Statistical Testing (Z-test)
-* Confidence Intervals
-* Funnel Analysis
-* Segmentation Analysis
+| Stage | Control (A) | Treatment (B) | Lift |
+|---|---|---|---|
+| Scroll | 36.2% | 38.2% | +2.0 pp |
+| Add to cart | 39.3% | 46.2% | +6.9 pp |
+| Conversion | 16.0% | 25.3% | +9.3 pp |
 
----
-
-## 📁 Project Files
-
-* `ab_testing.ipynb` → Full analysis notebook
-* `pharma_ab_test_data.csv` → Dataset
+The biggest lever is the **add-to-cart stage** — blue packaging with benefit-focused copy significantly reduces drop-off before checkout.
 
 ---
 
-## 🎤 Key Takeaways
+## Segmentation Insights
 
-* Applied end-to-end A/B testing framework
-* Combined statistical rigor with business interpretation
-* Identified key drivers of conversion uplift
-* Delivered actionable recommendation based on data
+### By age group
+
+| Segment | Control (A) | Treatment (B) | Lift |
+|---|---|---|---|
+| 25–34 | 15.3% | 33.0% | **+17.7 pp** |
+| 55+ | 17.4% | 31.3% | **+13.9 pp** |
+| 45–54 | No significant change | — | — |
+
+Strongest impact among young adults and older users. 45–54 segment warrants further investigation.
+
+### By device
+
+| Device | Control (A) | Treatment (B) | Lift |
+|---|---|---|---|
+| Android | 13.7% | 24.5% | +10.8 pp |
+| iOS | 18.5% | 26.2% | +7.7 pp |
+
+Android users show higher absolute lift — possibly due to screen rendering differences affecting color perception.
+
+### By user type
+
+| User type | Control (A) | Treatment (B) | Lift |
+|---|---|---|---|
+| New users | 17.6% | 25.4% | +7.8 pp |
+| Returning users | 15.0% | 25.3% | +10.3 pp |
+
+Treatment works across all users. Returning users show stronger gains — suggesting blue packaging reinforces brand trust on repeat visits.
 
 ---
+
+## Final Recommendation
+
+**Ship Treatment B (Blue packaging).**
+
+- Statistically significant result (p = 0.00027)
+- ~58% relative conversion lift with non-overlapping confidence intervals
+- Consistent gains across funnel stages, devices, and user types
+- No negative signals in any segment
+- Estimated business impact: ~58% more conversions at current traffic volume, scalable across demographics
+
+The only follow-up: investigate the 45–54 age segment separately — they show no significant response to either variant and may need a third design.
+
+---
+
+## Tech Stack
+
+| Layer | Tools |
+|---|---|
+| Data processing | Python, pandas, NumPy |
+| Statistical testing | Two-proportion Z-test (scipy.stats) |
+| Analysis | Funnel analysis, segmentation, confidence intervals |
+| Notebook | Jupyter |
+
+---
+
+## Project Files
+
+```
+pharma-ab-testing/
+│
+├── ab_testing.ipynb          # Full analysis — design, test, segments, recommendation
+├── pharma_ab_test_data.csv   # Raw experiment dataset (1,000 users)
+├── LICENSE
+└── README.md
+```
+
+---
+
+## Run It Yourself
+
+```bash
+# Clone the repo
+git clone https://github.com/seema-kri/pharma-ab-testing
+cd pharma-ab-testing
+
+# Install dependencies
+pip install pandas numpy scipy matplotlib seaborn jupyter
+
+# Launch notebook
+jupyter notebook ab_testing.ipynb
+```
+
+---
+
+## Future Work
+
+- **Sequential testing** — implement a stopping rule to catch significance earlier without inflating Type I error
+- **Bayesian A/B test** — model posterior distributions for a probabilistic decision framework
+- **45–54 segment deep-dive** — design a targeted variant for the non-responsive age group
+- **Long-term retention** — track whether blue packaging users show higher 30-day repurchase rates
+
+---
+
+## About
+
+I build data systems that surface decisions — not just charts.
+
+**[LinkedIn](https://www.linkedin.com/in/seema-kumari-375763308/)** · **[GitHub](https://github.com/seema-kri)**
